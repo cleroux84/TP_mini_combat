@@ -6,6 +6,7 @@ class Personnage
 {
     private $name;
     private $degats;
+    private $id;
 
     public function __construct(array $data)
     {
@@ -19,6 +20,7 @@ class Personnage
         } 
         $this->setName($data['name']);
         $this->setDegats($data['degats']);
+        $this->setId($data['id']);
     }
 
     public function getName()
@@ -29,6 +31,9 @@ class Personnage
     public function getDegats()
     {
         return $this->degats;
+    }
+    public function getId(){
+        return $this->id;
     }
 
     public function setName(string $name)
@@ -43,12 +48,16 @@ class Personnage
     {
         $this->degats = $degats;
     }
+    public function setId($id){
+        $this->id = $id;
+    }
 
 
     public function hit(Personnage $personnageHit)
     
-    {
-        $_SESSION['adversaire']=$personnageHit;
+    { $_SESSION['adversaire']=$personnageHit;
+       /*  var_dump($personnageHit); */
+  
         echo $this->getName().' frappe '.$personnageHit->getName().'<br>';
         $personnageHit->setDegats($personnageHit->getDegats() +20);     
         echo $personnageHit->getName().' reçoit 20 points de dégât, il est désormais à '.($personnageHit->getDegats()).' points<br>'; 
